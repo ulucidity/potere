@@ -23,6 +23,7 @@
 
 #include "xos/app/console/network/sockets/protocol/crlf/base/main.hpp"
 #include "xos/app/console/protocol/power/control/base/main.hpp"
+#include "xos/app/console/gpio/onoff/main.hpp"
 
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_POWER_CONTROL_BASE_MAIN_OPTIONS_CHARS_EXTEND \
@@ -66,8 +67,12 @@ template
  <xos::app::console::protocol::power::control::base::main_optt
  <xos::app::console::protocol::crlf::base::maint
  <xos::app::console::protocol::crlf::base::main_optt
+ <xos::app::console::gpio::onoff::maint
+ <xos::app::console::gpio::onoff::main_optt
+ <xos::app::console::gpio::maint
+ <xos::app::console::gpio::main_optt
  <xos::app::console::protocol::base::maint
- <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
+ <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
 
 class main_optt: virtual public TImplements, public TExtends {
 public:

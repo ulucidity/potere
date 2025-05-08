@@ -99,7 +99,7 @@ protected:
 
     //////////////////////////////////////////////////////////////////////////
     /// ...accept_run
-    virtual int before_accept_connect_run(int argc, char_t** argv, char_t** env) {
+    /*virtual int before_accept_connect_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         if (!(err = extends::before_accept_connect_run(argc, argv, env))) {
             LOGGER_IS_LOGGED_INFO("this->gpio_initialize_run(argc, argv, env)...");
@@ -124,19 +124,19 @@ protected:
         } else {
         }
         return err;
-    }
+    }*/
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////
     /// ...gpio_run
-    virtual int before_gpio_run(int argc, char_t** argv, char_t** env) {
+    /*virtual int before_gpio_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         return err;
     }
     virtual int after_gpio_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         return err;
-    }
+    }*/
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////

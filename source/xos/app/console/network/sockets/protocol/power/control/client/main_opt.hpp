@@ -16,16 +16,14 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 5/1/2025
+///   Date: 5/1/2025, 5/8/2025
 //////////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_POWER_CONTROL_CLIENT_MAIN_OPT_HPP
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_POWER_CONTROL_CLIENT_MAIN_OPT_HPP
 
 #include "xos/app/console/network/sockets/protocol/power/control/base/main.hpp"
 #include "xos/app/console/network/sockets/protocol/crlf/client/main.hpp"
-#include "xos/app/console/network/sockets/protocol/client/main.hpp"
 #include "xos/app/console/protocol/power/control/client/main.hpp"
-#include "xos/app/console/protocol/crlf/client/main.hpp"
 
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_POWER_CONTROL_CLIENT_MAIN_OPTIONS_CHARS_EXTEND \
@@ -85,8 +83,12 @@ template
  <xos::app::console::protocol::crlf::base::main_optt
  <xos::app::console::protocol::client::maint
  <xos::app::console::protocol::client::main_optt
+ <xos::app::console::gpio::onoff::maint
+ <xos::app::console::gpio::onoff::main_optt
+ <xos::app::console::gpio::maint
+ <xos::app::console::gpio::main_optt
  <xos::app::console::protocol::base::maint
- <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > > > > > > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
+ <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > > > > > > > > > > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
 
 class main_optt: virtual public TImplements, public TExtends {
 public:
