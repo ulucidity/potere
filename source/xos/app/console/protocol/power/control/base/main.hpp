@@ -153,12 +153,30 @@ protected:
         set_power_on_request();
         return err;
     }
+    virtual int on_on_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
+        return err;
+    }
     //////////////////////////////////////////////////////////////////////////
     /// on...off_option...
     virtual int on_set_off_option
     (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
         set_power_off_request();
+        return err;
+    }
+    virtual int on_off_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
         return err;
     }
     //////////////////////////////////////////////////////////////////////////
@@ -169,12 +187,30 @@ protected:
         set_power_state_request();
         return err;
     }
+    virtual int on_state_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
+        return err;
+    }
     //////////////////////////////////////////////////////////////////////////
     /// on...info_option...
     virtual int on_set_info_option
     (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
         set_system_info_request();
+        return err;
+    }
+    virtual int on_info_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
         return err;
     }
     //////////////////////////////////////////////////////////////////////////
@@ -185,6 +221,15 @@ protected:
         set_system_restart_request();
         return err;
     }
+    virtual int on_restart_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
+        return err;
+    }
     //////////////////////////////////////////////////////////////////////////
     /// on...start_option...
     virtual int on_set_start_option
@@ -193,12 +238,30 @@ protected:
         set_system_start_request();
         return err;
     }
+    virtual int on_start_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
+        return err;
+    }
     //////////////////////////////////////////////////////////////////////////
     /// on...stop_option...
     virtual int on_set_stop_option
     (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
         int err = 0;
         set_system_stop_request();
+        return err;
+    }
+    virtual int on_stop_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if (!(err = this->set_output_request_run(argc, argv, env))) {
+            if (!(err = this->output_request_run_set(argc, argv, env))) {
+            } else {}
+        } else {}
         return err;
     }
     //////////////////////////////////////////////////////////////////////////

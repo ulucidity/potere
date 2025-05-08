@@ -58,8 +58,11 @@ public:
     typedef typename extends::string_reader_t string_reader_t;
 
     /// constructor / destructor
-    maint(): run_(0) {
-        this->set_mseconds_pin_on(0);
+    maint()
+    : run_(0), 
+      mseconds_pin_on_(0), 
+      gpio_is_active_low_(false) {
+        //this->set_mseconds_pin_on(0);
     }
     virtual ~maint() {
     }
@@ -650,10 +653,22 @@ protected:
     }
     virtual int before_prepare_response_to_power_request_run(string_t& response, const string_t& request, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        LOGGER_IS_LOGGED_INFO("this->gpio_initialize_run(argc, argv, env)...");
+        if (!(err = this->gpio_initialize_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("..." << err << " = this->gpio_initialize_run(argc, argv, env)");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed " << err << " = this->before_gpio_pin_run(argc, argv, env)");
+        }
         return err;
     }
     virtual int after_prepare_response_to_power_request_run(string_t& response, const string_t& request, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        LOGGER_IS_LOGGED_INFO("this->gpio_finalize_run(argc, argv, env)...");
+        if (!(err = this->gpio_finalize_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("..." << err << " = this->gpio_finalize_run(argc, argv, env)");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed " << err << " = this->gpio_finalize_run(argc, argv, env)");
+        }
         return err;
     }
     virtual int all_prepare_response_to_power_request_run(string_t& response, const string_t& request, int argc, char_t** argv, char_t** env) {
@@ -677,7 +692,63 @@ protected:
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////
+    virtual int before_gpio_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        /*LOGGER_IS_LOGGED_INFO("this->gpio_initialize_run(argc, argv, env)...");
+        if (!(err = this->gpio_initialize_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("..." << err << " = this->gpio_initialize_run(argc, argv, env)");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed " << err << " = this->before_gpio_pin_run(argc, argv, env)");
+        }*/
+        return err;
+    }
+    virtual int after_gpio_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        /*LOGGER_IS_LOGGED_INFO("this->gpio_finalize_run(argc, argv, env)...");
+        if (!(err = this->gpio_finalize_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("..." << err << " = this->gpio_finalize_run(argc, argv, env)");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed " << err << " = this->gpio_finalize_run(argc, argv, env)");
+        }*/
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
+    virtual int on_mseconds_option_set
+    (const char_t* optarg, int optind, int argc, char_t**argv, char_t**env) {
+        int err = 0;
+        if ((optarg) && (optarg[0])) {
+            LOGGER_IS_LOGGED_INFO("(!(err = this->unset_output_mseconds_pin_on_run(argc, argv, env)))...");
+            if (!(err = this->unset_output_mseconds_pin_on_run(argc, argv, env))) {
+                LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->unset_output_mseconds_pin_on_run(argc, argv, env)))");
+                LOGGER_IS_LOGGED_INFO("...(!(err = this->output_mseconds_pin_on_run_unset(argc, argv, env)))");
+                if (!(err = this->output_mseconds_pin_on_run_unset(argc, argv, env))) {
+                    LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->output_mseconds_pin_on_run_unset(argc, argv, env)))");
+                } else {
+                    LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->output_mseconds_pin_on_run_unset(argc, argv, env)))");
+                }
+            }
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->unset_output_mseconds_pin_on_run(argc, argv, env)))");
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
+    virtual mseconds_t& mseconds_pin_on() const {
+        return (mseconds_t&)mseconds_pin_on_;
+    }
+    virtual bool& gpio_is_active_low() const {
+        return (bool&)gpio_is_active_low_;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
 protected:
+    mseconds_t mseconds_pin_on_;
+    bool gpio_is_active_low_;
 }; /// class maint 
 typedef maint<> main;
 

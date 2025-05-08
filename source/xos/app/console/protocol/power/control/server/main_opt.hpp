@@ -49,11 +49,13 @@
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_SERVER_MAIN_OPTIONS_CHARS \
    XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_BASE_MAIN_CONTROL_OPTIONS_CHARS_EXTEND \
+   XOS_APP_CONSOLE_GPIO_ONOFF_MAIN_MSECONDS_OPTIONS_CHARS_EXTEND \
    XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
    XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_BASE_MAIN_OPTIONS_CHARS \
 
 #define XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_SERVER_MAIN_OPTIONS_OPTIONS \
    XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_BASE_MAIN_CONTROL_OPTIONS_OPTIONS_EXTEND \
+   XOS_APP_CONSOLE_GPIO_ONOFF_MAIN_MSECONDS_OPTIONS_OPTIONS_EXTEND \
    XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
    XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_BASE_MAIN_OPTIONS_OPTIONS \
 
@@ -80,7 +82,11 @@ template
  <xos::app::console::protocol::server::maint
  <xos::app::console::protocol::server::main_optt
  <xos::app::console::gpio::onoff::maint
- <xos::app::console::gpio::onoff::main_optt<> > > > > > > > > >,  class TImplements = typename TExtends::implements>
+ <xos::app::console::gpio::onoff::main_optt
+ <xos::app::console::gpio::maint
+ <xos::app::console::gpio::main_optt
+ <xos::app::console::protocol::base::maint
+ <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
 
 class main_optt: virtual public TImplements, public TExtends {
 public:
