@@ -22,6 +22,7 @@
 #define XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_SERVER_MAIN_HPP
 
 #include "xos/app/console/protocol/power/control/server/main_opt.hpp"
+#include "xos/gpio/raspberrypi/raspberrypios/pigpio/gpio.hpp"
 
 namespace xos {
 namespace app {
@@ -57,6 +58,9 @@ public:
     typedef typename extends::reader_string_t reader_string_t;
     typedef typename extends::string_reader_t string_reader_t;
 
+    typedef typename extends::gpio_t gpio_t;
+    typedef xos::gpio::raspberrypi::raspberrypios::pigpio::gpio pigpio_gpio_t;
+    
     /// constructor / destructor
     maint()
     : run_(0), 
@@ -119,6 +123,8 @@ protected:
     /// ...get_system_info_run
     virtual int get_system_info_run(bool &is_true, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t &system_info_response = this->system_info_response();
+        is_true = (0 < (system_info_response.length()));
         return err;
     }
     virtual int before_get_system_info_run(bool &is_true, int argc, char_t** argv, char_t** env) {
@@ -144,6 +150,11 @@ protected:
     /// ...get_power_state_on_run
     virtual int get_power_state_on_run(bool &is_true, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        if (!(err = this->all_gpio_power_state_run(argc, argv, env))) {
+            const bool& gpio_is_on = this->gpio_is_on();
+            is_true = gpio_is_on;
+        } else {
+        }
         return err;
     }
     virtual int before_get_power_state_on_run(bool &is_true, int argc, char_t** argv, char_t** env) {
@@ -169,6 +180,11 @@ protected:
     /// ...get_power_state_off_run
     virtual int get_power_state_off_run(bool &is_true, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        if (!(err = this->all_gpio_power_state_run(argc, argv, env))) {
+            const bool& gpio_is_off = this->gpio_is_off();
+            is_true = gpio_is_off;
+        } else {
+        }
         return err;
     }
     virtual int before_get_power_state_off_run(bool &is_true, int argc, char_t** argv, char_t** env) {
@@ -743,12 +759,16 @@ protected:
     virtual bool& gpio_is_active_low() const {
         return (bool&)gpio_is_active_low_;
     }
+    virtual gpio_t& gpio() const {
+        return (gpio_t&)gpio_;
+    }
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////
 protected:
     mseconds_t mseconds_pin_on_;
     bool gpio_is_active_low_;
+    pigpio_gpio_t gpio_;
 }; /// class maint 
 typedef maint<> main;
 

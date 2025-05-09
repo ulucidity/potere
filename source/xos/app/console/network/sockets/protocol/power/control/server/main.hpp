@@ -16,7 +16,7 @@
 ///   File: main.hpp
 ///
 /// Author: $author$
-///   Date: 5/1/2025
+///   Date: 5/1/2025, 5/9/2025
 //////////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_POWER_CONTROL_SERVER_MAIN_HPP
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_POWER_CONTROL_SERVER_MAIN_HPP
@@ -98,8 +98,46 @@ protected:
     }
 
     //////////////////////////////////////////////////////////////////////////
+    /// ...set_system_restart_run
+    virtual int set_system_restart_run(bool &is_true, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        LOGGER_IS_LOGGED_INFO("((is_true = (this->set_restart(true))))...");
+        if ((is_true = (this->set_restart(true)))) {
+            LOGGER_IS_LOGGED_INFO("...((" << is_true << " = (this->set_restart(true))))");
+            LOGGER_IS_LOGGED_INFO("((is_true = (this->restart_set(true))))...");
+            if ((is_true = (this->restart_set(true)))) {
+                LOGGER_IS_LOGGED_INFO("...((" << is_true << " = (this->restart_set(true))))");
+            } else {
+                LOGGER_IS_LOGGED_INFO("...failed on ((" << is_true << " = (this->restart_set(true))))");
+            }
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on ((" << is_true << " = (this->set_restart(true))))");
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...set_system_stop_run
+    virtual int set_system_stop_run(bool &is_true, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        LOGGER_IS_LOGGED_INFO("((is_true = (this->set_stop(true))))...");
+        if ((is_true = (this->set_stop(true)))) {
+            LOGGER_IS_LOGGED_INFO("...((" << is_true << " = (this->set_stop(true))))");
+            LOGGER_IS_LOGGED_INFO("((is_true = (this->stop_set(true))))...");
+            if ((is_true = (this->stop_set(true)))) {
+                LOGGER_IS_LOGGED_INFO("...((" << is_true << " = (this->stop_set(true))))");
+            } else {
+                LOGGER_IS_LOGGED_INFO("...failed on ((" << is_true << " = (this->stop_set(true))))");
+            }
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on ((" << is_true << " = (this->set_stop(true))))");
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
     /// ...accept_run
-    /*virtual int before_accept_connect_run(int argc, char_t** argv, char_t** env) {
+    virtual int before_accept_connect_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
         if (!(err = extends::before_accept_connect_run(argc, argv, env))) {
             LOGGER_IS_LOGGED_INFO("this->gpio_initialize_run(argc, argv, env)...");
@@ -124,19 +162,30 @@ protected:
         } else {
         }
         return err;
-    }*/
+    }
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////
-    /// ...gpio_run
-    /*virtual int before_gpio_run(int argc, char_t** argv, char_t** env) {
+    virtual int before_prepare_response_to_power_request_run(string_t& response, const string_t& request, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        /*LOGGER_IS_LOGGED_INFO("this->gpio_initialize_run(argc, argv, env)...");
+        if (!(err = this->gpio_initialize_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("..." << err << " = this->gpio_initialize_run(argc, argv, env)");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed " << err << " = this->before_gpio_pin_run(argc, argv, env)");
+        }*/
         return err;
     }
-    virtual int after_gpio_run(int argc, char_t** argv, char_t** env) {
+    virtual int after_prepare_response_to_power_request_run(string_t& response, const string_t& request, int argc, char_t** argv, char_t** env) {
         int err = 0;
+        /*LOGGER_IS_LOGGED_INFO("this->gpio_finalize_run(argc, argv, env)...");
+        if (!(err = this->gpio_finalize_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("..." << err << " = this->gpio_finalize_run(argc, argv, env)");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed " << err << " = this->gpio_finalize_run(argc, argv, env)");
+        }*/
         return err;
-    }*/
+    }
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////

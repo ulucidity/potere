@@ -107,7 +107,21 @@ protected:
     /// ...console_gateway_run
     virtual int power_on_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->power_on_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...power_on_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
@@ -120,7 +134,21 @@ protected:
     /// ...console_gateway_run
     virtual int power_off_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->power_off_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...power_off_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
@@ -133,7 +161,21 @@ protected:
     /// ...console_gateway_run
     virtual int power_state_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->power_state_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...power_state_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
@@ -146,7 +188,21 @@ protected:
     /// ...console_gateway_run
     virtual int system_info_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->system_info_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...system_info_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
@@ -159,7 +215,21 @@ protected:
     /// ...console_gateway_run
     virtual int system_restart_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->system_restart_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...system_restart_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
@@ -172,7 +242,21 @@ protected:
     /// ...console_gateway_run
     virtual int system_start_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->system_restart_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...system_start_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
@@ -185,7 +269,21 @@ protected:
     /// ...console_gateway_run
     virtual int system_stop_console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& power_request = this->system_stop_request();
+        string_t &request = this->request(), &response = this->response();
+
+        LOGGER_IS_LOGGED_INFO("request.assign(\"" << power_request << "\")...");
+        request.assign(power_request);
+
+        LOGGER_IS_LOGGED_INFO("(!(err = this->all_connect_run(argc, argv, env)))...");
+        if (!(err = this->all_connect_run(argc, argv, env))) {
+            LOGGER_IS_LOGGED_INFO("...(!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = this->all_connect_run(argc, argv, env)))");
+        }
+        LOGGER_IS_LOGGED_INFO("(!(response_was_output()))...");
         if (!(response_was_output())) {
+            LOGGER_IS_LOGGED_INFO("...(!(response_was_output()))");
             if (!(response_dont_output())) {
                 this->outln("...system_stop_console_gateway_run(int argc, char_t** argv, char_t** env)");
             } else {
