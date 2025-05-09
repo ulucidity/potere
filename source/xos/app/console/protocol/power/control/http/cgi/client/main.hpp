@@ -1,0 +1,337 @@
+//////////////////////////////////////////////////////////////////////////
+/// Copyright (c) 1988-2025 $organization$
+///
+/// This software is provided by the author and contributors ``as is'' 
+/// and any express or implied warranties, including, but not limited to, 
+/// the implied warranties of merchantability and fitness for a particular 
+/// purpose are disclaimed. In no event shall the author or contributors 
+/// be liable for any direct, indirect, incidental, special, exemplary, 
+/// or consequential damages (including, but not limited to, procurement 
+/// of substitute goods or services; loss of use, data, or profits; or 
+/// business interruption) however caused and on any theory of liability, 
+/// whether in contract, strict liability, or tort (including negligence 
+/// or otherwise) arising in any way out of the use of this software, 
+/// even if advised of the possibility of such damage.
+///
+///   File: main.hpp
+///
+/// Author: $author$
+///   Date: 5/9/2025
+//////////////////////////////////////////////////////////////////////////
+#ifndef XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_HTTP_CGI_CLIENT_MAIN_HPP
+#define XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_HTTP_CGI_CLIENT_MAIN_HPP
+
+#include "xos/app/console/protocol/power/control/http/cgi/client/main_opt.hpp"
+
+namespace xos {
+namespace app {
+namespace console {
+namespace protocol {
+namespace power {
+namespace control {
+namespace http {
+namespace cgi {
+namespace client {
+
+/// class maint
+template 
+<class TExtends = xos::app::console::protocol::power::control::http::cgi::client::main_optt<>,  class TImplements = typename TExtends::implements>
+
+class maint: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements implements;
+    typedef TExtends extends;
+    typedef maint derives;
+
+    typedef typename extends::char_t char_t;
+    typedef typename extends::end_char_t end_char_t;
+    enum { end_char = extends::end_char };
+    typedef typename extends::string_t string_t;
+    typedef typename extends::reader_t reader_t;
+    typedef typename extends::writer_t writer_t;
+    typedef typename extends::file_t file_t;
+
+    typedef typename extends::sequence_char_t sequence_char_t;
+    typedef typename extends::char_sequence_t char_sequence_t;
+    typedef typename extends::char_seeker_t char_seeker_t;
+    typedef typename extends::char_reader_t char_reader_t;
+    typedef typename extends::char_writer_t char_writer_t;
+    typedef typename extends::reader_string_t reader_string_t;
+    typedef typename extends::string_reader_t string_reader_t;
+
+    /// constructor / destructor
+    maint()
+    : run_(0), 
+      response_was_output_(false), 
+      response_dont_output_(false), 
+      action_form_field_name_("action"), 
+      host_form_field_name_("host"), 
+      port_form_field_name_("port") {
+    }
+    virtual ~maint() {
+    }
+private:
+    maint(const maint &copy) {
+        throw exception(exception_unexpected);
+    }
+
+protected:
+    typedef typename extends::in_reader_t in_reader_t;
+    typedef typename extends::out_writer_t out_writer_t;
+    typedef typename extends::err_writer_t err_writer_t;
+
+    //////////////////////////////////////////////////////////////////////////
+    /// run
+    int (derives::*run_)(int argc, char_t** argv, char_t** env);
+    virtual int run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if ((run_)) {
+            LOGGER_IS_LOGGED_INFO("(!(err = (this->*run_)(argc, argv, env)))...");
+            if (!(err = (this->*run_)(argc, argv, env))) {
+                LOGGER_IS_LOGGED_INFO("...(!(" << err << " = (this->*run_)(argc, argv, env)))");
+            } else {
+                LOGGER_IS_LOGGED_INFO("...failed on (!(" << err << " = (this->*run_)(argc, argv, env)))");
+            }
+        } else {
+            LOGGER_IS_LOGGED_INFO("(!(err = extends::run(argc, argv, env)))...");
+            if (!(err = extends::run(argc, argv, env))) {
+                LOGGER_IS_LOGGED_INFO("...(!(" << err << " = extends::run(argc, argv, env)))");
+            } else {
+                LOGGER_IS_LOGGED_INFO("...failed on (!(err" << err << " = extends::run(argc, argv, env)))");
+            }
+        }
+        return err;
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int power_on_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...power_on_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int power_off_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...power_off_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int power_state_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...power_state_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int system_info_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...system_info_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int system_restart_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...system_restart_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int system_start_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...system_start_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...console_gateway_run
+    virtual int system_stop_console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(response_was_output())) {
+            if (!(response_dont_output())) {
+                this->outln("...system_stop_console_gateway_run(int argc, char_t** argv, char_t** env)");
+            } else {
+            }
+        } else {
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    virtual int action_console_gateway_run(const string_t& action, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        int unequal = 0;
+        const string_t& power_on_option = this->power_on_option();
+
+        if (!(unequal = power_on_option.compare(action))) {
+            err = power_on_console_gateway_run(argc, argv, env);
+        } else {
+            const string_t& power_off_option = this->power_off_option();
+    
+            if (!(unequal = power_off_option.compare(action))) {
+                err = power_off_console_gateway_run(argc, argv, env);
+            } else {
+                const string_t& power_state_option = this->power_state_option();
+        
+                if (!(unequal = power_state_option.compare(action))) {
+                    err = power_state_console_gateway_run(argc, argv, env);
+                } else {
+                    const string_t& system_info_option = this->system_info_option();
+            
+                    if (!(unequal = system_info_option.compare(action))) {
+                        err = system_info_console_gateway_run(argc, argv, env);
+                    } else {
+                        const string_t& system_restart_option = this->system_restart_option();
+                
+                        if (!(unequal = system_restart_option.compare(action))) {
+                            err = system_restart_console_gateway_run(argc, argv, env);
+                        } else {
+                            const string_t& system_start_option = this->system_start_option();
+
+                            if (!(unequal = system_start_option.compare(action))) {
+                                err = system_start_console_gateway_run(argc, argv, env);
+                            } else {
+                                const string_t& system_stop_option = this->system_stop_option();
+
+                                if (!(unequal = system_stop_option.compare(action))) {
+                                    err = system_stop_console_gateway_run(argc, argv, env);
+                                } else {
+                                    err = this->all_console_gateway_out_run(argc, argv, env);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    virtual int console_gateway_run(int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        const string_t& action_form_field_name = this->action_form_field_name();
+        const string_t& host_form_field_name = this->host_form_field_name();
+        const string_t& port_form_field_name = this->port_form_field_name();
+        const char_t* chars = 0;
+        
+        if ((chars = this->first_query_or_form_field_named_chars(host_form_field_name))) {
+            const string_t host(chars);
+            this->set_connect_host(host);
+        } else {
+        }
+        if ((chars = this->first_query_or_form_field_named_chars(port_form_field_name))) {
+            const string_t port(chars);
+            this->set_connect_port(port.to_unsigned());
+        } else {
+        }
+        if ((chars = this->first_query_or_form_field_named_chars(action_form_field_name))) {
+            const string_t action(chars);
+            err = action_console_gateway_run(action, argc, argv, env);
+        } else {
+            err = this->all_console_gateway_out_run(argc, argv, env);
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...output_response_run
+    virtual int output_response_run(string_t& response, int argc, char_t** argv, char_t** env) {
+        int err = 0;
+        if (!(err = extends::output_response_run(response, argc, argv, env))) {
+            set_response_was_output(true);
+        }
+        return err;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
+    /// ...response_was_output...
+    virtual bool& set_response_was_output(const bool& to) {
+        bool& response_was_output = this->response_was_output();
+        response_was_output = to;
+        return response_was_output;
+    }
+    virtual bool& response_was_output() const {
+        return (bool&) response_was_output_;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...response_dont_output...
+    virtual bool& set_response_dont_output(const bool& to) {
+        bool& response_dont_output = this->response_dont_output();
+        response_dont_output = to;
+        return response_dont_output;
+    }
+    virtual bool& response_dont_output() const {
+        return (bool&) response_dont_output_;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    /// ...form_field_name...
+    virtual string_t& action_form_field_name() const {
+        return (string_t&) action_form_field_name_;
+    }
+    virtual string_t& host_form_field_name() const {
+        return (string_t&) host_form_field_name_;
+    }
+    virtual string_t& port_form_field_name() const {
+        return (string_t&) port_form_field_name_;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
+protected:
+    bool response_was_output_, response_dont_output_;
+    string_t action_form_field_name_, host_form_field_name_, port_form_field_name_;
+}; /// class maint 
+typedef maint<> main;
+
+} /// namespace client 
+} /// namespace cgi 
+} /// namespace http 
+} /// namespace control 
+} /// namespace power 
+} /// namespace protocol 
+} /// namespace console 
+} /// namespace app 
+} /// namespace xos 
+
+#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_POWER_CONTROL_HTTP_CGI_CLIENT_MAIN_HPP
+
