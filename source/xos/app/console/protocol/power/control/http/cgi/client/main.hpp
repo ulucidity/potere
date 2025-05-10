@@ -64,9 +64,15 @@ public:
     : run_(0), 
       response_was_output_(false), 
       response_dont_output_(false), 
+
       action_form_field_name_("action"), 
       host_form_field_name_("host"), 
-      port_form_field_name_("port") {
+      port_form_field_name_("port"), 
+
+      before_redirect_content_("<html><head><meta http-equiv=\"refresh\" content=\"1;url="), 
+      between_redirect_content_("\"</meta></head><body>"), 
+      after_redirect_content_("</body></html>"), 
+      redirect_form_field_name_("redirect") {
     }
     virtual ~maint() {
     }
@@ -344,6 +350,7 @@ protected:
     //////////////////////////////////////////////////////////////////////////
     virtual int console_gateway_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
+        const string_t& redirect_form_field_name = this->redirect_form_field_name();
         const string_t& action_form_field_name = this->action_form_field_name();
         const string_t& host_form_field_name = this->host_form_field_name();
         const string_t& port_form_field_name = this->port_form_field_name();
@@ -359,6 +366,11 @@ protected:
             this->set_connect_port(port.to_unsigned());
         } else {
         }
+        if ((chars = this->first_query_or_form_field_named_chars(redirect_form_field_name))) {
+            const string_t redirect(chars);
+            this->set_redirect_form_field_value(redirect);
+        } else {
+        }
         if ((chars = this->first_query_or_form_field_named_chars(action_form_field_name))) {
             const string_t action(chars);
             err = action_console_gateway_run(action, argc, argv, env);
@@ -371,8 +383,40 @@ protected:
     /// ...output_response_run
     virtual int output_response_run(string_t& response, int argc, char_t** argv, char_t** env) {
         int err = 0;
-        if (!(err = extends::output_response_run(response, argc, argv, env))) {
+        /*if (!(err = extends::output_response_run(response, argc, argv, env))) {
             set_response_was_output(true);
+        }*/
+        size_t length = 0;
+        const char_t* chars = 0;
+        
+        LOGGER_IS_LOGGED_INFO("((chars = this->redirect_form_field_value_chars(length)))...");
+        if ((chars = this->redirect_form_field_value_chars(length))) {
+            string_t& redirect_response = this->redirect_content();
+            LOGGER_IS_LOGGED_INFO("...((\"" << chars << "\" = this->redirect_form_field_value_chars(" << length << ")))");
+            this->set_content_type(this->redirect_content_type());
+            redirect_response.assign(this->before_redirect_content());
+            redirect_response.append(chars, length);
+            redirect_response.append(this->between_redirect_content());
+            redirect_response.append(response);
+            redirect_response.append(this->after_redirect_content());
+            LOGGER_IS_LOGGED_INFO("(!(err = extends::output_response_run(redirect_response = \"" << redirect_response << "\", argc, argv, env)))...");
+            if (!(err = extends::output_response_run(redirect_response, argc, argv, env))) {
+                LOGGER_IS_LOGGED_INFO("...(!(" << err << " = extends::output_response_run(redirect_response = \"" << redirect_response << "\", argc, argv, env)))");
+                LOGGER_IS_LOGGED_INFO("set_response_was_output(true)...");
+                set_response_was_output(true);
+            } else {
+                LOGGER_IS_LOGGED_ERROR("...failed on (!(" << err << " = extends::output_response_run(redirect_response = \"" << redirect_response << "\", argc, argv, env)))");
+            }
+        } else {
+            LOGGER_IS_LOGGED_INFO("...failed on ((chars = this->redirect_form_field_value_chars(length)))");
+            LOGGER_IS_LOGGED_INFO("(!(err = extends::output_response_run(response = \"" << response << "\", argc, argv, env)))...");
+            if (!(err = extends::output_response_run(response, argc, argv, env))) {
+                LOGGER_IS_LOGGED_INFO("...(!(" << err << " = extends::output_response_run(response = \"" << response << "\", argc, argv, env)))");
+                LOGGER_IS_LOGGED_INFO("set_response_was_output(true)...");
+                set_response_was_output(true);
+            } else {
+                LOGGER_IS_LOGGED_ERROR("...failed on (!(" << err << " = extends::output_response_run(response = \"" << response << "\", argc, argv, env)))");
+            }
         }
         return err;
     }
@@ -415,9 +459,43 @@ protected:
     //////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////
+    virtual string_t& before_redirect_content() const {
+        return (string_t&) before_redirect_content_;
+    }
+    virtual string_t& between_redirect_content() const {
+        return (string_t&) between_redirect_content_;
+    }
+    virtual string_t& after_redirect_content() const {
+        return (string_t&) after_redirect_content_;
+    }
+    virtual string_t& redirect_content() const {
+        return (string_t&) redirect_content_;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    virtual string_t& redirect_form_field_name() const {
+        return (string_t&) redirect_form_field_name_;
+    }
+    virtual string_t& set_redirect_form_field_value(const string_t& to) {
+        string_t& redirect_form_field_value = this->redirect_form_field_value();
+        redirect_form_field_value.assign(to);
+        return redirect_form_field_value;
+    }
+    virtual string_t& redirect_form_field_value() const {
+        return (string_t&) redirect_form_field_value_;
+    }
+    virtual const char_t* redirect_form_field_value_chars(size_t& length) const {
+        const string_t& redirect_form_field_value = this->redirect_form_field_value();
+        const char_t* chars = redirect_form_field_value.has_chars(length);
+        return chars;
+    }
+    //////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
 protected:
     bool response_was_output_, response_dont_output_;
-    string_t action_form_field_name_, host_form_field_name_, port_form_field_name_;
+    string_t action_form_field_name_, host_form_field_name_, port_form_field_name_, 
+             before_redirect_content_, between_redirect_content_, after_redirect_content_, 
+             redirect_form_field_name_, redirect_form_field_value_, redirect_content_;
 }; /// class maint 
 typedef maint<> main;
 
