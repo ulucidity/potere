@@ -23,7 +23,6 @@
 
 #include "xos/app/console/protocol/http/cgi/main.hpp"
 #include "xos/app/console/network/sockets/protocol/power/control/client/main.hpp"
-#include "xos/app/console/gpio/base/onoff/main.hpp"
 
 ///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_PROTOCOL_HOME_CONTROL_POWER_NETWORK_CLIENT_MAIN_POWER_ON_OPT "power-on"
@@ -171,12 +170,8 @@ template
  <xos::app::console::protocol::crlf::base::main_optt
  <xos::app::console::protocol::client::maint
  <xos::app::console::protocol::client::main_optt
- <xos::app::console::gpio::base::onoff::maint
- <xos::app::console::gpio::base::onoff::main_optt
- <xos::app::console::gpio::base::maint
- <xos::app::console::gpio::base::main_optt
  <xos::app::console::protocol::base::maint
- <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > > > > > > > > > > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
+ <xos::app::console::protocol::base::main_optt<> > > > > > > > > > > > > > > > > > > > > > > > > >,  class TImplements = typename TExtends::implements>
 
 class main_optt: virtual public TImplements, public TExtends {
 public:
