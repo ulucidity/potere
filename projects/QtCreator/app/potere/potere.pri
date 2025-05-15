@@ -128,11 +128,6 @@ $${POTERE_SRC}/xos/app/console/network/sockets/protocol/power/control/server/mai
 # potere_exe SOURCES
 #
 potere_exe_SOURCES += \
-$${PERIFRA_SRC}/xos/gpio/implement.cpp \
-$${PERIFRA_SRC}/xos/gpio/extend.cpp \
-$${PERIFRA_SRC}/xos/gpio/os/os.cpp \
-$${PERIFRA_SRC}/xos/gpio/os/gpio.cpp \
-\
 $${POTERE_SRC}/xos/app/console/framework/version/main_opt.cpp \
 $${POTERE_SRC}/xos/app/console/framework/version/main.cpp \
 
@@ -140,12 +135,12 @@ $${POTERE_SRC}/xos/app/console/framework/version/main.cpp \
 # potere_exe FRAMEWORKS
 #
 potere_exe_FRAMEWORKS += \
-$${potere_pigpio_FRAMEWORKS} \
+$${potere_FRAMEWORKS} \
 
 # potere_exe LIBS
 #
 potere_exe_LIBS += \
-$${potere_pigpio_LIBS} \
+$${potere_LIBS} \
 
 ########################################################################
 # NO Qt

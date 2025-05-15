@@ -114,12 +114,12 @@ $${POTERE_SRC}/xos/app/console/network/sockets/protocol/power/control/client/mai
 # power FRAMEWORKS
 #
 power_FRAMEWORKS += \
-$${potere_pigpio_FRAMEWORKS} \
+$${potere_FRAMEWORKS} \
 
 # power LIBS
 #
 power_LIBS += \
-$${potere_pigpio_LIBS} \
+$${potere_LIBS} \
 
 ########################################################################
 # NO Qt

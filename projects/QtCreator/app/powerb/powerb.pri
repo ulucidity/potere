@@ -114,12 +114,12 @@ $${POTERE_SRC}/xos/app/console/network/sockets/protocol/power/control/base/main.
 # powerb FRAMEWORKS
 #
 powerb_FRAMEWORKS += \
-$${potere_pigpio_FRAMEWORKS} \
+$${potere_FRAMEWORKS} \
 
 # powerb LIBS
 #
 powerb_LIBS += \
-$${potere_pigpio_LIBS} \
+$${potere_LIBS} \
 
 ########################################################################
 # NO Qt
