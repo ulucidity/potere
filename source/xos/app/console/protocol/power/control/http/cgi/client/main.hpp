@@ -70,8 +70,8 @@ public:
       port_form_field_name_("port"), 
 
       before_redirect_content_("<html><head><meta http-equiv=\"refresh\" content=\"1;url="), 
-      between_redirect_content_("\"</meta></head><body>"), 
-      after_redirect_content_("</body></html>"), 
+      between_redirect_content_("\"</meta></head><body><pre>"), 
+      after_redirect_content_("</pre></body></html>"), 
       redirect_form_field_name_("redirect") {
     }
     virtual ~maint() {
